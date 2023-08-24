@@ -13,12 +13,9 @@ import lombok.Data;
 public class AadharCard {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer aadharId;
 	private Long aadgharNo;
-	
-/*//	@OneToOne(mappedBy = "aadharNo" , cascade = CascadeType.ALL) */
-//	@OneToOne(mappedBy = "aadharCard" , cascade = CascadeType.ALL)
-	private User userId;
-	
+	private Integer userId;
+
 }
