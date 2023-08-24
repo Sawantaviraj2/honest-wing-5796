@@ -1,5 +1,7 @@
 package com.masaischool.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,15 +12,19 @@ import lombok.Data;
 
 @Entity
 @Data
-public class AadharCard {
+public class Vaccine {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer aadharId;
-	private Long aadgharNo;
-	
-/*//	@OneToOne(mappedBy = "aadharNo" , cascade = CascadeType.ALL) */
-//	@OneToOne(mappedBy = "aadharCard" , cascade = CascadeType.ALL)
-	private User userId;
+    private Integer Id;
+    private String vaxName;
+    private String description;
+    
+    @JsonIgnore
+    @OneToOne(cascade = CascadeType.ALL)
+    private Member member;
+    
+    @OneToOne(mappedBy = "vaccine" , cascade = CascadeType.ALL)
+    private VaccineCount vaccineCount;
 	
 }
