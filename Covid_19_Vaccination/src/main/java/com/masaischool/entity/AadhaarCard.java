@@ -6,11 +6,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class AadharCard {
+public class AadhaarCard {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer aadharId;
-	private Long aadgharNo;
-
-	// private User userId;
+	private Integer aadhaarId;
+	private Long aadhaarNo;
+	private User user;
 }
