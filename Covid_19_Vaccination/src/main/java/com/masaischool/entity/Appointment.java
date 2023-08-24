@@ -24,7 +24,7 @@ public class Appointment {
 	 @Id
 	 @GeneratedValue(strategy =  GenerationType.IDENTITY)
 	 private Integer bookingId;
-//	 @Pattern(regexp = "^[6-9][0-9]{9}")
+	 
 	 private Long mobileNo;
 	 private LocalDate dateOfBooking;
 	 @Enumerated(EnumType.STRING)
