@@ -16,12 +16,16 @@ import com.masaischool.service.VaccineInventoryService;
 
 @Service
 public class VaccineInventoryServiceImp implements VaccineInventoryService {
-
-	@Autowired
 	private VaccineInventoryRepository vaccineInventoryRepository;
+	private VaccinationCenterRepository vaccinationCenterRepository;
 
 	@Autowired
-	private VaccinationCenterRepository vaccinationCenterRepository;
+	public VaccineInventoryServiceImp(VaccineInventoryRepository vaccineInventoryRepository,
+			VaccinationCenterRepository vaccinationCenterRepository) {
+		super();
+		this.vaccineInventoryRepository = vaccineInventoryRepository;
+		this.vaccinationCenterRepository = vaccinationCenterRepository;
+	}
 
 	// Retrieves a list of all vaccine inventory items
 	@Override

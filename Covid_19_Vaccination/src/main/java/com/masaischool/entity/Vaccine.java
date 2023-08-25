@@ -15,16 +15,16 @@ import lombok.Data;
 public class Vaccine {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer Id;
-    private String vaxName;
-    private String description;
-    
-    @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL)
-    private Member member;
-    
-    @OneToOne(mappedBy = "vaccine" , cascade = CascadeType.ALL)
-    private VaccineCount vaccineCount;
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer Id;
+	private String vaxName;
+	private String description;
+
+	@JsonIgnore
+	@OneToOne(cascade = CascadeType.ALL)
+	private Member member;
+
+	@OneToOne(mappedBy = "vaccine", cascade = CascadeType.ALL)
+	private VaccineCount vaccineCount;
+
 }
