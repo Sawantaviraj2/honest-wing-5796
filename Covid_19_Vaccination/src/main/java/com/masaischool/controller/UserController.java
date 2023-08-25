@@ -44,14 +44,14 @@ public class UserController {
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 
-	@GetMapping("/users/{AadharNo}")
+	@GetMapping("/users/aadhar/{AadharNo}")
 	public ResponseEntity<User> getUserByAadharNo(@PathVariable String AadharNo) throws InvalidUserException {
 		log.info("Retrieve a User by Aadhar No");
 		User user = userService.getUserByAadharNo(AadharNo);
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 
-	@GetMapping("/users/{panNo}")
+	@GetMapping("/users/pan/{panNo}")
 	public ResponseEntity<User> getUserByPanNo(@PathVariable String panNo) throws InvalidUserException {
 		log.info("Retrieve a User by pan number");
 		User user = userService.getUserByPanNo(panNo);

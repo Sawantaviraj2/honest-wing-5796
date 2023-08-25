@@ -67,7 +67,7 @@ public class MemberServiceImpl implements MemberService {
 	 * @throws InvalidMemberException If no member is found with the given PAN number.
 	 */
 	public Member getMemberByPanNo(String panNo) throws InvalidMemberException {
-		Member member = memberRepository.findByPanNo(panNo).orElseThrow(()-> new InvalidMemberException("No Member found for this Aadhar No : "+panNo));
+		Member member = memberRepository.findByPanNo(panNo).orElseThrow(()-> new InvalidMemberException("No Member found for this Pan No : "+panNo));
 		return member;
 	}
 

@@ -42,13 +42,13 @@ public class MemberController {
 		return new ResponseEntity<Member>(memberService.getMemberById(memberId), HttpStatus.OK);
 	}
 	
-	@GetMapping("/members/{aadharNo}")
-	public ResponseEntity<Member> getMemberByAadharNo(@PathVariable String AadharNo) throws InvalidMemberException {
+	@GetMapping("/members/aadhar/{aadharNo}")
+	public ResponseEntity<Member> getMemberByAadharNo(@PathVariable String aadharNo) throws InvalidMemberException {
 		log.info("Retrieve a Member by Aadhar No");
-		return new ResponseEntity<Member>(memberService.getMemberByAadharNo(AadharNo), HttpStatus.OK);
+		return new ResponseEntity<Member>(memberService.getMemberByAadharNo(aadharNo), HttpStatus.OK);
 	}
 	
-	@GetMapping("/members/{panNo}")
+	@GetMapping("/members/pan/{panNo}")
 	public ResponseEntity<Member> getMemberByPanNo(@PathVariable String panNo) throws InvalidMemberException {
 		log.info("Retrieve a Member by Pan No");
 		return new ResponseEntity<Member>(memberService.getMemberByPanNo(panNo), HttpStatus.OK);
