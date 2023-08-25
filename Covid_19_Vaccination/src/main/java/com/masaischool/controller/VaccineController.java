@@ -2,62 +2,110 @@ package com.masaischool.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.masaischool.entity.Vaccine;
 import com.masaischool.service.VaccineService;
 
-import jakarta.validation.Valid;
-import lombok.extern.slf4j.Slf4j;
-
 @RestController
-@Slf4j
+@CrossOrigin("*")
 public class VaccineController {
 
+	@Autowired
 	private VaccineService vaccineService;
+	
+	
+	/**
+	 *  This maps a GET request to the /vaccines endpoint.
 
-	@PostMapping("/vaccines/{memberId}")
-	public ResponseEntity<Vaccine> addVaccine(@Valid @RequestBody Vaccine vaccine, @PathVariable Integer memberId) {
-		log.info("Vaccine added");
-		return new ResponseEntity<Vaccine>(vaccineService.addVaccine(vaccine, memberId), HttpStatus.CREATED);
-	}
+ResponseEntity<List<Vaccine>>: This specifies the response type as a list of Vaccine objects.
+The method returns a list of all vaccines.
+	 * @return
+	 */
+	@GetMapping(value = "/vaccines")
+	public ResponseEntity<List<Vaccine>> getAllVaccine(){
+		return new ResponseEntity<List<Vaccine>>(vaccineService.getAllVaccine() , HttpStatus.ACCEPTED); 
+    }
+	
+	/**
+	 * This maps a GET request to the /vaccines/byName/{vaccineName} endpoint.
 
-	@GetMapping("/vaccines/{vaccineName}")
-	public ResponseEntity<Vaccine> getVaccineByName(@PathVariable String vaccineName) {
-		log.info("Get Vaccine");
-		return new ResponseEntity<Vaccine>(vaccineService.getVaccineByName(vaccineName), HttpStatus.OK);
-	}
+@PathVariable String vaccineName: This extracts the vaccineName from the URL.
+The method returns a vaccine with the specified name.
+	 * @param vaccineName
+	 * @return
+	 */
+	@GetMapping(value = "/vaccines/byName/{vaccineName}")
+	public ResponseEntity<Vaccine> getVaccineByName(@PathVariable String vaccineName){
+		return new ResponseEntity<Vaccine>(vaccineService.getVaccineByName(vaccineName) ,HttpStatus.ACCEPTED);
+    }
+	
+	/**
+	 *  This maps a GET request to the /vaccines/{vaccineId} endpoint.
 
-	@GetMapping("/vaccines/{vaccineId}")
-	public ResponseEntity<Vaccine> getVaccineById(@PathVariable Integer vaccineId) {
-		log.info("Get Vaccine By id");
-		return new ResponseEntity<Vaccine>(vaccineService.getVaccineById(vaccineId), HttpStatus.OK);
-	}
+@PathVariable Integer vaccineId: This extracts the vaccineId from the URL.
+The method returns a vaccine with the specified ID.
+	 * @param vaccineId
+	 * @return
+	 */
+	@GetMapping(value = "/vaccines/{vaccineId}")
+	public ResponseEntity<Vaccine> getVaccineById(@PathVariable Integer vaccineId){
+		return new ResponseEntity<Vaccine>(vaccineService.getVaccineById(vaccineId) ,HttpStatus.ACCEPTED);
+    }
+	
+	/**
+	 *  This maps a POST request to the /vaccines/{memberId} endpoint.
 
-	@GetMapping("/vaccines")
-	public ResponseEntity<List<Vaccine>> getAllVaccine() {
-		log.info("Get Vaccine List");
-		return new ResponseEntity<List<Vaccine>>(vaccineService.getAllVaccine(), HttpStatus.OK);
-	}
+@RequestBody Vaccine vaccine: This expects a JSON payload in the request body, representing a Vaccine object.
+@PathVariable Integer memberId: This extracts the memberId from the URL.
+The method adds a new vaccine associated with the provided memberId.
+	 * @param vaccine
+	 * @param memberId
+	 * @return
+	 */
+	@PostMapping(value = "/vaccines/{memberId}")
+	public ResponseEntity<Vaccine> addVaccine(@RequestBody Vaccine vaccine, @PathVariable Integer memberId){
+		return new ResponseEntity<Vaccine>(vaccineService.addVaccine(vaccine , memberId) ,HttpStatus.ACCEPTED);    
+    }
+	
+	/**
+	 * This maps a PUT request to the /vaccines/{vaccineId} endpoint.
 
-	@PatchMapping("/vaccines/{vaccineId}")
-	public ResponseEntity<Vaccine> updateVaccine(@RequestBody Vaccine vaccine, @PathVariable Integer vaccineId) {
-		log.info("Update Vaccine");
-		return new ResponseEntity<Vaccine>(vaccineService.updateVaccine(vaccineId, vaccine), HttpStatus.OK);
-	}
+@PathVariable Integer vaccineId: This extracts the vaccineId from the URL.
+@RequestBody Vaccine vaccine: This expects a JSON payload in the request body, representing a Vaccine object.
+The method updates an existing vaccine based on the provided vaccineId.
+	 * @param vaccineId
+	 * @param vaccine
+	 * @return
+	 */
+	@PutMapping(value = "/vaccines/{vaccineId}")
+	public ResponseEntity<Vaccine> updateVaccine(@PathVariable Integer vaccineId,@RequestBody Vaccine vaccine){
+		return new ResponseEntity<Vaccine>(vaccineService.updateVaccine(vaccineId , vaccine) ,HttpStatus.ACCEPTED);    
+    }
+	
+	/**
+	 *  This maps a DELETE request to the /vaccines/{vaccineId} endpoint.
 
-	@DeleteMapping("/vaccines/{vaccineId}")
-	public ResponseEntity<String> deleteVaccine(@PathVariable Integer vaccineId) {
-		log.info("Delete Vaccine");
-		return new ResponseEntity<String>(vaccineService.deleteVaccine(vaccineId), HttpStatus.OK);
-	}
+@PathVariable Integer vaccineId: This extracts the vaccineId from the URL.
+The method deletes a vaccine based on the provided vaccineId.
+	 * @param vaccineId
+	 * @return
+	 */
+
+	@DeleteMapping(value = "/vaccines/vaccineId")
+	public ResponseEntity<Boolean> deleteVaccine(@PathVariable Integer vaccineId){
+		return new ResponseEntity<Boolean>(vaccineService.deleteVaccine(vaccineId ) ,HttpStatus.ACCEPTED);    // changing to -> "Boolean" deleteVaccine in VaccineService file
+    }
+	
+	
 }

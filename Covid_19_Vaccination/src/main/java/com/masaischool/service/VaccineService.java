@@ -15,5 +15,5 @@ public interface VaccineService {
 
 	public Vaccine updateVaccine(Integer vaccineId, Vaccine vaccine);
 
-	public String deleteVaccine(Integer vaccineId);
+	public Boolean deleteVaccine(Integer vaccineId);
 }
