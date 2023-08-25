@@ -103,8 +103,8 @@ The method deletes a vaccine based on the provided vaccineId.
 	 */
 
 	@DeleteMapping(value = "/vaccines/vaccineId")
-	public ResponseEntity<Boolean> deleteVaccine(@PathVariable Integer vaccineId){
-		return new ResponseEntity<Boolean>(vaccineService.deleteVaccine(vaccineId ) ,HttpStatus.ACCEPTED);    // changing to -> "Boolean" deleteVaccine in VaccineService file
+	public ResponseEntity<String> deleteVaccine(@PathVariable Integer vaccineId){
+		return new ResponseEntity<String>(vaccineService.deleteVaccine(vaccineId ) ,HttpStatus.ACCEPTED);    // changing to -> "Boolean" deleteVaccine in VaccineService file
     }
 	
 	
