@@ -2,12 +2,14 @@ package com.masaischool.service.SerImpl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.masaischool.entity.User;
-import com.masaischool.exception.InvalidArgumentsException;
 import com.masaischool.exception.InvalidUserException;
 import com.masaischool.repository.UserRepository;
 import com.masaischool.service.UserService;
 
+@Service
 public class UserServiceImpl implements UserService {
 	private UserRepository userRepository;
 
