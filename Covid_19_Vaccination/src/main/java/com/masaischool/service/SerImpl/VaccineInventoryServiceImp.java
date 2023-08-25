@@ -53,6 +53,7 @@ public class VaccineInventoryServiceImp implements VaccineInventoryService {
 		if (optional.isEmpty())
 			throw new VaccineNotFoundException("Vax Center Not Found");
 		inv.setVaxCenter(optional.get());
+		optional.get().setVaxInventory(inv);
 		return vaccineInventoryRepository.save(inv);
 	}
 
