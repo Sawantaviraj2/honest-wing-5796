@@ -1,7 +1,10 @@
 package com.masaischool.entity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -16,15 +19,22 @@ import lombok.Data;
 @Data
 public class VaccineInventory {
 
-	    @Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private  Integer inventoryId;
-	    private LocalDate date;
-	    
-	    @OneToOne(mappedBy = "vaxInventory" , cascade = CascadeType.ALL)
-	    private VaccinationCenter vaxCenter;
-	    
-	    @OneToMany(mappedBy = "vaxInventory", cascade = CascadeType.ALL)
-	    private List<VaccineCount> vaxCount;
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer inventoryId;
+	private LocalDate date;
+
+	@JsonIgnore
+	@OneToOne(mappedBy = "vaxInventory", cascade = CascadeType.ALL)
+	private VaccinationCenter vaxCenter;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "vaxInventory", cascade = CascadeType.ALL)
+	private List<VaccineCount> vaxCount;
+
+	public VaccineInventory(LocalDate date, List<VaccineCount> vaxCount) {
+		super();
+		this.date = date;
+	}
+
 }

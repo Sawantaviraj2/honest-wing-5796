@@ -20,23 +20,24 @@ import lombok.Data;
 public class VaccinationCenter {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer centerId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer centerId;
 	@Size(min = 2, max = 80)
-    private String centerName;
+	private String centerName;
 	@Size(min = 2, max = 80)
-    private String address;
+	private String address;
 	@Size(min = 2, max = 80)
-    private String city;
+	private String city;
 	@Size(min = 2, max = 80)
-    private String state;
-    @Pattern(regexp = "^[1-9][0-9]{5}$", message = "Invalid Indian PIN code")
-    private String pinCode;
-    
-    @JsonIgnore
-    @OneToMany(mappedBy = "vaxCenter" , cascade = CascadeType.ALL)
-    private List<Appointment> appointments;
-	
-    @OneToOne(cascade = CascadeType.ALL)
-    private VaccineInventory vaxInventory;
+	private String state;
+	@Pattern(regexp = "^[1-9][0-9]{5}$", message = "Invalid Indian PIN code")
+	private String pinCode;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "vaxCenter", cascade = CascadeType.ALL)
+	private List<Appointment> appointments;
+
+	@JsonIgnore
+	@OneToOne(cascade = CascadeType.ALL)
+	private VaccineInventory vaxInventory;
 }
