@@ -1,3 +1,4 @@
+
 package com.masaischool.service;
 
 import java.util.List;
@@ -15,5 +16,5 @@ public interface VaccineService {
 
 	public Vaccine updateVaccine(Integer vaccineId, Vaccine vaccine);
 
-	public Boolean deleteVaccine(Integer vaccineId);
+	public String deleteVaccine(Integer vaccineId);
 }
