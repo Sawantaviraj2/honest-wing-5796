@@ -13,8 +13,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 @Entity
@@ -24,7 +22,7 @@ public class Appointment {
 	 @Id
 	 @GeneratedValue(strategy =  GenerationType.IDENTITY)
 	 private Integer bookingId;
-//	 @Pattern(regexp = "^[6-9][0-9]{9}")
+	 
 	 private Long mobileNo;
 	 private LocalDate dateOfBooking;
 	 @Enumerated(EnumType.STRING)
