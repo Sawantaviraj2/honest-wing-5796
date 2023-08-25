@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -36,12 +35,15 @@ public class Member {
 	 
 	 private LocalDate dateOfRegistration = LocalDate.now();
 	 
+	 @JsonIgnore
 	 @OneToOne(cascade = CascadeType.ALL)
 	 private User user;
 	 
+	 @JsonIgnore
 	 @OneToOne(mappedBy = "memberId", cascade = CascadeType.ALL)
 	 private Appointment appointment;
 	 
+	 @JsonIgnore
 	 @OneToOne(mappedBy = "member", cascade = CascadeType.ALL)
 	 private Vaccine vaccine;
 	 

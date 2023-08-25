@@ -24,100 +24,120 @@ public class VaccineInventoryController {
 
 	@Autowired
 	private VaccineInventoryService vaccineInventoryService;
-	
-	
+
 	/**
-	 * 	This maps a GET request to the /vaccineinventories endpoint.
-		ResponseEntity<List<VaccineInventory>>: This specifies the response type as a list of VaccineInventory objects.
-		The method returns a list of all vaccine inventory items.
+	 * This maps a GET request to the /vaccineinventories endpoint.
+	 * ResponseEntity<List<VaccineInventory>>: This specifies the response type as a
+	 * list of VaccineInventory objects. The method returns a list of all vaccine
+	 * inventory items.
 	 */
 	@GetMapping(value = "/vaccineinventories")
-	public ResponseEntity<List<VaccineInventory>>  getAllVaccineInventory(){
-		return new ResponseEntity<List<VaccineInventory>>(vaccineInventoryService.getAllVaccineInventory() , HttpStatus.ACCEPTED) ; 
-    }
-	
-	/**
-	 * This maps a GET request to the /vaccineinventories/bycenter/{center} endpoint.
+	public ResponseEntity<List<VaccineInventory>> getAllVaccineInventory() {
+		return new ResponseEntity<List<VaccineInventory>>(vaccineInventoryService.getAllVaccineInventory(),
+				HttpStatus.ACCEPTED);
+	}
 
-		@PathVariable Integer centerId: This extracts the centerId from the URL.
-		The method returns vaccine inventory data specific to the provided centerId.
+	/**
+	 * This maps a GET request to the /vaccineinventories/bycenter/{center}
+	 * endpoint.
+	 * 
+	 * @PathVariable Integer centerId: This extracts the centerId from the URL. The
+	 *               method returns vaccine inventory data specific to the provided
+	 *               centerId.
 	 * @param centerId
 	 * @return
 	 */
-	@GetMapping(value = "/vaccineinventories/bycenter/{center}")
-	public ResponseEntity<VaccineInventory>  getVaccinationInventoryByCenter(@PathVariable Integer centerId){ 
-		return new ResponseEntity<VaccineInventory>(vaccineInventoryService.getVaccinationInventoryByCenter(centerId) , HttpStatus.ACCEPTED) ; 
-    }
-	
+	@GetMapping(value = "/vaccineinventories/bycenter/{centerId}")
+	public ResponseEntity<VaccineInventory> getVaccinationInventoryByCenter(@PathVariable Integer centerId) {
+		return new ResponseEntity<VaccineInventory>(vaccineInventoryService.getVaccinationInventoryByCenter(centerId),
+				HttpStatus.ACCEPTED);
+	}
+
 	/**
 	 * This maps a POST request to the /vaccineinventories/{vaxCenterId} endpoint.
-
-		@PathVariable Integer vaxCenterId: This extracts the vaxCenterId from the URL.
-		@RequestBody VaccineInventory inv: This expects a JSON payload in the request body, which represents a VaccineInventory object.
-		The method adds a new vaccine inventory count associated with the specified vaxCenterId.
+	 * 
+	 * @PathVariable Integer vaxCenterId: This extracts the vaxCenterId from the
+	 *               URL.
+	 * @RequestBody VaccineInventory inv: This expects a JSON payload in the request
+	 *              body, which represents a VaccineInventory object. The method
+	 *              adds a new vaccine inventory count associated with the specified
+	 *              vaxCenterId.
 	 * @param vaxCenterId
 	 * @param inv
 	 * @return
 	 */
 	@PostMapping(value = "/vaccineinventories/{vaxCenterId}")
-	public ResponseEntity<VaccineInventory> addVaccineCount(@PathVariable Integer vaxCenterId ,@RequestBody VaccineInventory inv){ 
-		return new ResponseEntity<VaccineInventory>(vaccineInventoryService.addVaccineCount(vaxCenterId , inv) , HttpStatus.ACCEPTED) ; 
+	public ResponseEntity<VaccineInventory> addVaccineCount(@PathVariable Integer vaxCenterId,
+			@RequestBody VaccineInventory inv) {
+		return new ResponseEntity<VaccineInventory>(vaccineInventoryService.addVaccineCount(vaxCenterId, inv),
+				HttpStatus.ACCEPTED);
 	}
-	
+
 	/**
 	 * This maps a PUT request to the /vaccineinventories/{vaccineInvenId} endpoint.
-
-		@PathVariable Integer vaccineInvenId: This extracts the vaccineInvenId from the URL.
-		@RequestBody VaccineInventory inv: This expects a JSON payload in the request body, which represents a VaccineInventory object.
-		The method updates an existing vaccine inventory entry based on the provided vaccineInvenId.
+	 * 
+	 * @PathVariable Integer vaccineInvenId: This extracts the vaccineInvenId from
+	 *               the URL.
+	 * @RequestBody VaccineInventory inv: This expects a JSON payload in the request
+	 *              body, which represents a VaccineInventory object. The method
+	 *              updates an existing vaccine inventory entry based on the
+	 *              provided vaccineInvenId.
 	 * @param vaccineInvenId
 	 * @param inv
 	 * @return
 	 */
 	@PutMapping(value = "/vaccineinventories/{vaccineInvenId}")
-	public ResponseEntity<VaccineInventory> updateVaccineInventory(@PathVariable Integer vaccineInvenId,@RequestBody VaccineInventory inv){ 
-		return new ResponseEntity<VaccineInventory>(vaccineInventoryService.updateVaccineInventory(vaccineInvenId , inv) , HttpStatus.ACCEPTED) ; 
+	public ResponseEntity<VaccineInventory> updateVaccineInventory(@PathVariable Integer vaccineInvenId,
+			@RequestBody VaccineInventory inv) {
+		return new ResponseEntity<VaccineInventory>(vaccineInventoryService.updateVaccineInventory(vaccineInvenId, inv),
+				HttpStatus.ACCEPTED);
 
 	}
-	
-	/**
-	 * This maps a DELETE request to the /vaccineinventories/{vaccineInvenId} endpoint.
 
-		@PathVariable Integer vaccineInvenId: This extracts the vaccineInvenId from the URL.
-		The method deletes a vaccine inventory entry based on the provided vaccineInvenId.
+	/**
+	 * This maps a DELETE request to the /vaccineinventories/{vaccineInvenId}
+	 * endpoint.
+	 * 
+	 * @PathVariable Integer vaccineInvenId: This extracts the vaccineInvenId from
+	 *               the URL. The method deletes a vaccine inventory entry based on
+	 *               the provided vaccineInvenId.
 	 * @param vaccineInvenId
 	 * @return
 	 */
 	@DeleteMapping(value = "/vaccineinventories/{vaccineInvenId}")
-	public ResponseEntity<Boolean>  deleteVaccinationInventory(@PathVariable Integer vaccineInvenId){ 
-		return new ResponseEntity<Boolean>(vaccineInventoryService.deleteVaccinationInventory(vaccineInvenId) , HttpStatus.ACCEPTED) ; 
+	public ResponseEntity<Boolean> deleteVaccinationInventory(@PathVariable Integer vaccineInvenId) {
+		return new ResponseEntity<Boolean>(vaccineInventoryService.deleteVaccinationInventory(vaccineInvenId),
+				HttpStatus.ACCEPTED);
 
-    }
-	
+	}
+
 	/**
 	 * This maps a GET request to the /vaccineinventories/{date} endpoint.
-
-		@PathVariable LocalDate date: This extracts the date from the URL.
-		The method returns vaccine inventory data for the specified date.
+	 * 
+	 * @PathVariable LocalDate date: This extracts the date from the URL. The method
+	 *               returns vaccine inventory data for the specified date.
 	 * @param date
 	 * @return
 	 */
-	@GetMapping(value = "/vaccineinventories/{date}")
-	public ResponseEntity<List<VaccineInventory>> getVaccineInventoryByDate(@PathVariable LocalDate date){ 
-		return new ResponseEntity<List<VaccineInventory>>(vaccineInventoryService.getVaccineInventoryByDate(date) , HttpStatus.ACCEPTED) ; 
+	@GetMapping(value = "/vaccineinventories/date/{date}")
+	public ResponseEntity<List<VaccineInventory>> getVaccineInventoryByDate(@PathVariable LocalDate date) {
+		return new ResponseEntity<List<VaccineInventory>>(vaccineInventoryService.getVaccineInventoryByDate(date),
+				HttpStatus.ACCEPTED);
 	}
-	
-	/**
-	 *  This maps a GET request to the /vaccineinventories/{vaccineId} endpoint.
 
-		@PathVariable Integer vaccineId: This extracts the vaccineId from the URL.
-		The method returns vaccine inventory data for the specified vaccine ID.
+	/**
+	 * This maps a GET request to the /vaccineinventories/{vaccineId} endpoint.
+	 * 
+	 * @PathVariable Integer vaccineId: This extracts the vaccineId from the URL.
+	 *               The method returns vaccine inventory data for the specified
+	 *               vaccine ID.
 	 * @param vaccineId
 	 * @return
 	 */
-	@GetMapping(value = "/vaccineinventories/{vaccineId}")
-	public ResponseEntity<List<VaccineInventory>> getVaccineInventoryByVaccine(@PathVariable Integer vaccineId){ 
-		return new ResponseEntity<List<VaccineInventory>>(vaccineInventoryService.getVaccineInventoryByVaccine(vaccineId) , HttpStatus.ACCEPTED) ; 
+	@GetMapping(value = "/vaccineinventories/id/{vaccineId}")
+	public ResponseEntity<List<VaccineInventory>> getVaccineInventoryByVaccine(@PathVariable Integer vaccineId) {
+		return new ResponseEntity<List<VaccineInventory>>(
+				vaccineInventoryService.getVaccineInventoryByVaccine(vaccineId), HttpStatus.ACCEPTED);
 	}
-	
+
 }

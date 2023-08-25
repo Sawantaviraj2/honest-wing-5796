@@ -14,9 +14,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class VaccineInventory {
 
 	@Id
@@ -31,6 +33,8 @@ public class VaccineInventory {
 	@JsonIgnore
 	@OneToMany(mappedBy = "vaxInventory", cascade = CascadeType.ALL)
 	private List<VaccineCount> vaxCount;
+	
+	private Integer vaccineId;
 
 	public VaccineInventory(LocalDate date, List<VaccineCount> vaxCount) {
 		super();

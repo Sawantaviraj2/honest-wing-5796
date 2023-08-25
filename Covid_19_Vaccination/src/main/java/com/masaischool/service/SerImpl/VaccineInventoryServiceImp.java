@@ -8,10 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.masaischool.entity.VaccinationCenter;
+import com.masaischool.entity.Vaccine;
+import com.masaischool.entity.VaccineCount;
 import com.masaischool.entity.VaccineInventory;
 import com.masaischool.exception.VaccineNotFoundException;
 import com.masaischool.repository.VaccinationCenterRepository;
 import com.masaischool.repository.VaccineInventoryRepository;
+import com.masaischool.repository.VaccineRepository;
 import com.masaischool.service.VaccineInventoryService;
 
 @Service
@@ -22,7 +25,6 @@ public class VaccineInventoryServiceImp implements VaccineInventoryService {
 	@Autowired
 	public VaccineInventoryServiceImp(VaccineInventoryRepository vaccineInventoryRepository,
 			VaccinationCenterRepository vaccinationCenterRepository) {
-		super();
 		this.vaccineInventoryRepository = vaccineInventoryRepository;
 		this.vaccinationCenterRepository = vaccinationCenterRepository;
 	}
@@ -36,11 +38,14 @@ public class VaccineInventoryServiceImp implements VaccineInventoryService {
 		return list;
 	}
 
+	
+
 	// Retrieve vaccine inventory for a specific vaccination center
 	@Override
 	public VaccineInventory getVaccinationInventoryByCenter(Integer centerId) {
-
-		return null;
+		VaccinationCenter vaccinationCenter = vaccinationCenterRepository.findById(centerId).get();
+		VaccineInventory vaxInventory = vaccinationCenter.getVaxInventory();
+		return vaxInventory;
 	}
 
 	// Adds a new vaccine inventory count for a specified vaccination center.
@@ -86,7 +91,7 @@ public class VaccineInventoryServiceImp implements VaccineInventoryService {
 	// Retrieves a list of vaccine inventory items for a given date.
 	@Override
 	public List<VaccineInventory> getVaccineInventoryByDate(LocalDate date) {
-		List<VaccineInventory> list = vaccineInventoryRepository.findVaccineInventoryByDate(date);
+		List<VaccineInventory> list = vaccineInventoryRepository.findByDate(date);
 		if (list.size() == 0)
 			throw new VaccineNotFoundException("Vaccine inventory not found on given date");
 		return list;
@@ -94,8 +99,8 @@ public class VaccineInventoryServiceImp implements VaccineInventoryService {
 
 	@Override
 	public List<VaccineInventory> getVaccineInventoryByVaccine(Integer vaccineId) {
-
-		return null;
+		List<VaccineInventory> findByVaccineId = vaccineInventoryRepository.findByVaccineId(vaccineId);
+		return findByVaccineId;
 	}
 
 }

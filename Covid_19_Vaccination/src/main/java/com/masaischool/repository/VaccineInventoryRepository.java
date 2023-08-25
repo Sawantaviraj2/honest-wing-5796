@@ -9,6 +9,7 @@ import com.masaischool.entity.VaccineInventory;
 
 public interface VaccineInventoryRepository extends JpaRepository<VaccineInventory, Integer> {
 
-	public List<VaccineInventory> findVaccineInventoryByDate(LocalDate date);
+	public List<VaccineInventory> findByDate(LocalDate date);
+	public List<VaccineInventory> findByVaccineId(Integer vaccineId);
 	
 }
