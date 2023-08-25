@@ -48,4 +48,16 @@ public class GlobalExceptionHandler {
 
 		return new ResponseEntity<MyExceptionClass>(mec, HttpStatus.BAD_REQUEST);
 	}
+
+	@ExceptionHandler(InvalidMemberException.class)
+	public ResponseEntity<MyExceptionClass> getInvalidMemberException(InvalidMemberException ime, WebRequest req) {
+		MyExceptionClass mec = new MyExceptionClass(ime.getMessage(), req.getDescription(false), LocalDateTime.now());
+		return new ResponseEntity<MyExceptionClass>(mec, HttpStatus.NOT_FOUND);
+	}
+
+	@ExceptionHandler(InvalidUserException.class)
+	public ResponseEntity<MyExceptionClass> getInvalidUserException(InvalidUserException iue, WebRequest req) {
+		MyExceptionClass mec = new MyExceptionClass(iue.getMessage(), req.getDescription(false), LocalDateTime.now());
+		return new ResponseEntity<MyExceptionClass>(mec, HttpStatus.NOT_FOUND);
+	}
 }
