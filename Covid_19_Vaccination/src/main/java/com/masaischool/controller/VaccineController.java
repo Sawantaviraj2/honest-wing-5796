@@ -2,6 +2,7 @@ package com.masaischool.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -53,7 +54,7 @@ public class VaccineController {
 	@GetMapping("/vaccines/{pageNumber}/{pageSize}")
 	public ResponseEntity<List<Vaccine>> getAllVaccine(@PathVariable int pageNumber, @PathVariable int pageSize) {
 		log.info("Get Vaccine List");
-		Pageable pageRequest = PageRequest.of(pageNumber-1, pageSize);
+		Pageable pageRequest = PageRequest.of(pageNumber - 1, pageSize);
 		return new ResponseEntity<List<Vaccine>>(vaccineService.getAllVaccine(pageRequest), HttpStatus.OK);
 	}
 
