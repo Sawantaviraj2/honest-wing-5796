@@ -26,6 +26,12 @@ public class VaccineController {
 
 	private VaccineService vaccineService;
 
+	@Autowired
+	public VaccineController(VaccineService vaccineService) {
+		super();
+		this.vaccineService = vaccineService;
+	}
+
 	@PostMapping("/vaccines/{memberId}")
 	public ResponseEntity<Vaccine> addVaccine(@Valid @RequestBody Vaccine vaccine, @PathVariable Integer memberId) {
 		log.info("Vaccine added");
