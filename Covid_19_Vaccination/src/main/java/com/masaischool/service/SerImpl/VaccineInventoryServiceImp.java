@@ -5,16 +5,15 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.masaischool.entity.VaccinationCenter;
-import com.masaischool.entity.Vaccine;
-import com.masaischool.entity.VaccineCount;
 import com.masaischool.entity.VaccineInventory;
 import com.masaischool.exception.VaccineNotFoundException;
 import com.masaischool.repository.VaccinationCenterRepository;
 import com.masaischool.repository.VaccineInventoryRepository;
-import com.masaischool.repository.VaccineRepository;
 import com.masaischool.service.VaccineInventoryService;
 
 @Service
@@ -31,11 +30,11 @@ public class VaccineInventoryServiceImp implements VaccineInventoryService {
 
 	// Retrieves a list of all vaccine inventory items
 	@Override
-	public List<VaccineInventory> getAllVaccineInventory() {
-		List<VaccineInventory> list = vaccineInventoryRepository.findAll();
-		if (list.size() == 0)
+	public List<VaccineInventory> getAllVaccineInventory(Pageable pageable) {
+		Page<VaccineInventory> list = vaccineInventoryRepository.findAll(pageable);
+		if (list.isEmpty())
 			throw new VaccineNotFoundException("Not Any Vaccine Inventory Found");
-		return list;
+		return list.toList();
 	}
 
 	

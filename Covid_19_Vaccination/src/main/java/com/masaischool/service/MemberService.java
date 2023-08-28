@@ -2,6 +2,8 @@ package com.masaischool.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
+
 import com.masaischool.entity.Member;
 import com.masaischool.exception.InvalidMemberException;
 
@@ -12,7 +14,7 @@ public interface MemberService {
 	 * 
 	 * @return A list of all members in the repository.
 	 */
-	public List<Member> getAllMember();
+	public List<Member> getAllMember(Pageable pageable);
 
 	/**
 	 * Retrieves a member by their ID.

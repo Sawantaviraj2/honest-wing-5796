@@ -3,6 +3,8 @@ package com.masaischool.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,9 +24,10 @@ public class VaccinationCenterController {
 	private VaccinationCenterService vaccinationCenterService;
 	
 	
-	@GetMapping(value = "/vaccinationCenters")
-	public ResponseEntity<List<VaccinationCenter>> getAllVaccinationCenter(){
-		return new ResponseEntity<List<VaccinationCenter>>(vaccinationCenterService.getAllVaccinationCenter(), HttpStatus.ACCEPTED);
+	@GetMapping(value = "/vaccinationCenters/{pageNumber}/{pageSize}")
+	public ResponseEntity<List<VaccinationCenter>> getAllVaccinationCenter(@PathVariable int pageNumber, @PathVariable int pageSize){
+		Pageable pageRequest = PageRequest.of(pageNumber-1, pageSize);
+		return new ResponseEntity<List<VaccinationCenter>>(vaccinationCenterService.getAllVaccinationCenter(pageRequest), HttpStatus.ACCEPTED);
 	}
 	@GetMapping(value = "/vaccinationCenters/{centerId}")
 	public ResponseEntity<VaccinationCenter> getVaccinationCenterById(@PathVariable Integer centerId){

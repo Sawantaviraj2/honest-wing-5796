@@ -2,6 +2,8 @@ package com.masaischool.controller;
 
 import java.util.List;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -30,10 +32,11 @@ public class MemberController {
 		this.memberService = memberService;
 	}
 
-	@GetMapping("/getallmembers")
-	public ResponseEntity<List<Member>> getMemberList(){
+	@GetMapping("/getallmembers/{pageNumber}/{pageSize}")
+	public ResponseEntity<List<Member>> getMemberList(@PathVariable int pageNumber, @PathVariable int pageSize){
 		log.info("Retrieves a list of Members");
-		return new ResponseEntity<List<Member>>(memberService.getAllMember(),HttpStatus.OK);
+		Pageable pageRequest = PageRequest.of(pageNumber-1, pageSize);
+		return new ResponseEntity<List<Member>>(memberService.getAllMember(pageRequest),HttpStatus.OK);
 	}
 	
 	@GetMapping("/members/{memberId}")

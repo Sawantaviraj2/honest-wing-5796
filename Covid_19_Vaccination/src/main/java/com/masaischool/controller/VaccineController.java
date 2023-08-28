@@ -2,12 +2,12 @@ package com.masaischool.controller;
 
 import java.util.List;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -44,10 +44,11 @@ public class VaccineController {
 		return new ResponseEntity<Vaccine>(vaccineService.getVaccineById(vaccineId), HttpStatus.OK);
 	}
 
-	@GetMapping("/vaccines")
-	public ResponseEntity<List<Vaccine>> getAllVaccine() {
+	@GetMapping("/vaccines/{pageNumber}/{pageSize}")
+	public ResponseEntity<List<Vaccine>> getAllVaccine(@PathVariable int pageNumber, @PathVariable int pageSize) {
 		log.info("Get Vaccine List");
-		return new ResponseEntity<List<Vaccine>>(vaccineService.getAllVaccine(), HttpStatus.OK);
+		Pageable pageRequest = PageRequest.of(pageNumber-1, pageSize);
+		return new ResponseEntity<List<Vaccine>>(vaccineService.getAllVaccine(pageRequest), HttpStatus.OK);
 	}
 
 	@PutMapping("/vaccines/{vaccineId}")

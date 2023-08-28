@@ -2,6 +2,7 @@ package com.masaischool.service.SerImpl;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.masaischool.entity.User;
@@ -18,8 +19,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 
-	public List<User> getAllUser() {
-		return userRepository.findAll();
+	public List<User> getAllUser(Pageable pageable) {
+		return userRepository.findAll(pageable).toList();
 	}
 
 

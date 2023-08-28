@@ -2,17 +2,19 @@ package com.masaischool.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
+
 import com.masaischool.entity.User;
 import com.masaischool.exception.InvalidUserException;
 
 public interface UserService {
 
 	/**
-	 * Retrieves a list of all users.
+	 * Retrieves a list of all users with page and size
 	 * 
 	 * @return A list of all users in the repository.
 	 */
-	public List<User> getAllUser();
+	public List<User> getAllUser(Pageable pageable);
 	
 	/**
 	 * Retrieves a user by their ID.
