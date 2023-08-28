@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Services</title>
+    <link rel="stylesheet" href="./Style/login.css">
+</head>
+<body>
+    <div id="main">
+        <div id="left">
+            <input type="text" placeholder="Aadhaar" id="aadhaarSearch">
+            <button id="fetchByAadhaar">Fetch User</button>
+            <input type="text" placeholder="Pan" id="panSearch">
+            <button id="fetchByPan">Fetch User</button>
+            <button id="fetchAll">Fetch All Users</button>
+            <p>ID:</p> 
+            <input type="text" id="idTF">   
+            <p>Name:</p> 
+            <input type="text" id="nameTF">
+            <p>DOB:</p> 
+            <input type="text" id="dobTF">
+            <p>Gender:</p> 
+            <input type="text" id="genderTF">
+            <p>Address:</p> 
+            <input type="text" id="addressTF">
+            <p>City:</p> 
+            <input type="text" id="cityTF">
+            <p>State:</p> 
+            <input type="text" id="stateTF">
+            <p>Pincode:</p> 
+            <input type="text" id="pinTF">
+            <p>Pan No:</p> 
+            <input type="text" id="panTF">
+            <p>Aadhaar No:</p> 
+            <input type="text" id="aadhaarTF">
+            <button id="addBTN">Add User</button>
+            <button>Update User</button>
+            <button>Delete User</button>
+        </div>
+        <div id="right">
+            <!-- Appending of cards here -->
+        </div>
+    </div>
+    
+</body>
+<script src="Script/userServices.js"></script>
+</html>

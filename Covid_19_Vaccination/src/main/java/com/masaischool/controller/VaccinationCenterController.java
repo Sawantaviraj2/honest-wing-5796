@@ -39,7 +39,7 @@ public class VaccinationCenterController {
 	public ResponseEntity<VaccinationCenter> updateVaccineCenter(@PathVariable Integer centerId ,@RequestBody VaccinationCenter center){
 		return new ResponseEntity<VaccinationCenter>(vaccinationCenterService.updateVaccineCenter(centerId , center) , HttpStatus.ACCEPTED);
 	}
-	@DeleteMapping(value = "vaccinationCenters/{centerId}")
+	@DeleteMapping(value = "/vaccinationCenters/{centerId}")
 	public ResponseEntity<Boolean> deleteVaccinationCenter(@PathVariable Integer centerId) {
 		return new ResponseEntity<Boolean>(vaccinationCenterService.deleteVaccinationCenter(centerId) , HttpStatus.ACCEPTED);
 	}
