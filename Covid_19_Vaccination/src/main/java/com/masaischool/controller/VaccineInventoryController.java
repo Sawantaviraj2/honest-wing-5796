@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -31,9 +33,10 @@ public class VaccineInventoryController {
 	 * list of VaccineInventory objects. The method returns a list of all vaccine
 	 * inventory items.
 	 */
-	@GetMapping(value = "/vaccineinventories")
-	public ResponseEntity<List<VaccineInventory>> getAllVaccineInventory() {
-		return new ResponseEntity<List<VaccineInventory>>(vaccineInventoryService.getAllVaccineInventory(),
+	@GetMapping(value = "/vaccineinventories/{pageNumber}/{pageSize}")
+	public ResponseEntity<List<VaccineInventory>> getAllVaccineInventory(@PathVariable int pageNumber, @PathVariable int pageSize) {
+		Pageable pageRequest = PageRequest.of(pageNumber-1, pageSize);
+		return new ResponseEntity<List<VaccineInventory>>(vaccineInventoryService.getAllVaccineInventory(pageRequest),
 				HttpStatus.ACCEPTED);
 	}
 

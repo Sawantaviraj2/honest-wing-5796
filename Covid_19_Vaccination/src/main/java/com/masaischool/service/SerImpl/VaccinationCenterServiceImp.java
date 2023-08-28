@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.masaischool.entity.VaccinationCenter;
@@ -25,11 +27,12 @@ public class VaccinationCenterServiceImp implements VaccinationCenterService {
 
 	// Retrieves a list of all vaccination centers from the repository
 	@Override
-	public List<VaccinationCenter> getAllVaccinationCenter() {
-		List<VaccinationCenter> list = vaccinationCenterRepository.findAll();
-		if (list.size() == 0)
+	public List<VaccinationCenter> getAllVaccinationCenter(Pageable pageable) {
+		
+		Page<VaccinationCenter> list = vaccinationCenterRepository.findAll(pageable);
+		if (list == null)
 			throw new VaccineNotFoundException("not any Vaccination Center"); // Connection for Exception here
-		return list;
+		return list.toList();
 	}
 
 	// Retrieves a specific vaccination center by its ID from the repository

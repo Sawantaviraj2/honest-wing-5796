@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.masaischool.entity.Member;
@@ -28,12 +30,12 @@ public class VaccineServiceImpl implements VaccineService {
 	}
 
 	@Override
-	public List<Vaccine> getAllVaccine() {
-		List<Vaccine> Vaccinelist = vaccineRepository.findAll();
-		if (Vaccinelist.size() == 0) {
+	public List<Vaccine> getAllVaccine(Pageable pageable) {
+		Page<Vaccine> Vaccinelist = vaccineRepository.findAll(pageable);
+		if (Vaccinelist == null) {
 			throw new VaccineNotFoundException("Vaccine Not Found");
 		}
-		return Vaccinelist;
+		return Vaccinelist.toList();
 	}
 
 	@Override

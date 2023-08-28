@@ -3,6 +3,8 @@ package com.masaischool.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -36,10 +38,11 @@ public class UserController {
 		this.passwordEncoder = passwordEncoder;
 	}
 
-	@GetMapping("/getallusers")
-	public ResponseEntity<List<User>> getListOfAllUsers() {
+	@GetMapping("/getallusers/{pageNumber}/{pageSize}")
+	public ResponseEntity<List<User>> getListOfAllUsers(@PathVariable int pageNumber, @PathVariable int pageSize) {
 		log.info("Retrieves a list of Users");
-		List<User> allUser = userService.getAllUser();
+		Pageable pageRequest = PageRequest.of(pageNumber-1, pageSize);
+		List<User> allUser = userService.getAllUser(pageRequest);
 		return new ResponseEntity<List<User>>(allUser, HttpStatus.OK);
 	}
 

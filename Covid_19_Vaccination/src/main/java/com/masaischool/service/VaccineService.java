@@ -3,6 +3,8 @@ package com.masaischool.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
+
 import com.masaischool.entity.Vaccine;
 
 public interface VaccineService {
@@ -10,7 +12,7 @@ public interface VaccineService {
 	 * This method gets all the vaccines 
 	 * @return List of Vaccine 
 	 */
-	public List<Vaccine> getAllVaccine();
+	public List<Vaccine> getAllVaccine(Pageable pageable);
 	
 	/**
 	 * This Method gets the vaccine by the name
