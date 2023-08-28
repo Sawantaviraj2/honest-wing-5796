@@ -78,14 +78,6 @@ public class UserController {
 		return new ResponseEntity<User>(addUser, HttpStatus.CREATED);
 	}
 
-	@PostMapping("/users/admin")
-	public ResponseEntity<User> registerAdmin(@Valid @RequestBody User user) {
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		user.setRole("ROLE_ADMIN");
-		log.info("Admin Created Successfully");
-		return new ResponseEntity<User>(userService.addUser(user), HttpStatus.CREATED);
-	}
-
 	@PutMapping("/users/{userId}")
 	public ResponseEntity<User> updateUser(@PathVariable Integer userId, @Valid @RequestBody User user)
 			throws InvalidUserException {
