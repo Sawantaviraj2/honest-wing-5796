@@ -7,7 +7,7 @@ This endeavor presents a COVID-19 Vaccination portal developed using Spring Boot
 
 ## Tech Stack
 
-#### Java | Hibernate | Spring Boot | Spring Framework | Spring Data JPA | Spring Boot Validation | Spring Boot Web | Spring Boot DevTools| Postman | MySQL Database | Maven | Swagger UI | Lombok | HTML | CSS | JavaScript | Swagger
+#### Java | Hibernate | Spring Boot | Spring Framework | Spring Data JPA | Spring Boot Validation | Spring Boot Web | Spring Boot DevTools| Postman | MySQL Database | Maven | Swagger UI | Lombok | HTML | CSS | JavaScript | Swagger | Spring Security
 
 ## Modules 
 - Vaccine Registration Module
